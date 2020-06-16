@@ -3,9 +3,11 @@ var router = express.Router();
 
 // Subrouters;
 const userRouter = require('./user');
+const gamesRouter = require('./games');
 
 // Mount our subrouters to assemble our apiRouter;
 router.use('/user', userRouter);
+router.use('/games', gamesRouter);
 
 // Error handling middleware;
 router.use((req, res, next) => {
