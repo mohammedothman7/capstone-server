@@ -2,10 +2,10 @@ var express = require("express");
 var router = express.Router();
 
 // Subrouters;
-const usersRouter = require("./users");
+const userRouter = require("./user");
 
 // Mount our subrouters to assemble our apiRouter;
-router.use("/users", usersRouter);
+router.use("/user", userRouter);
 
 // Error handling middleware;
 router.use((req, res, next) => {
