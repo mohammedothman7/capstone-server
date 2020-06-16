@@ -9,16 +9,8 @@ const { Games } = require('../database/models');
 router.get('/', async (req, res, next) => {
   // try to get gamess object from api
   //const { pageNumber } = req.params;
-  axios({
-    method: 'GET',
-    url: `https://rawg-video-games-database.p.rapidapi.com/games`,
-    headers: {
-      'content-type': 'application/octet-stream',
-      'x-rapidapi-host': 'rawg-video-games-database.p.rapidapi.com',
-      'x-rapidapi-key': 'f1d85d3ba0msh59559d71189b3eap1b506ejsn09b190fe52de',
-      useQueryString: true,
-    },
-  })
+  axios
+    .get('https://api.rawg.io/api/games')
     .then((response) => {
       const games = response.data.results;
       const allGamesArray = [];
