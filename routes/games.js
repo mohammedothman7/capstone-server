@@ -1,19 +1,19 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const axios = require('axios');
-const { Games } = require('../database/models');
+const axios = require("axios");
+const { Games } = require("../database/models");
 
 //localhost:3000/games
 
 // Route to get gamess from database
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   // try to get gamess object from api
   //console.log(req);
   const { page, page_size } = req.query;
   // const param = req.query.filter;
   console.log(req.query);
   axios
-    .get('https://api.rawg.io/api/games', {
+    .get("https://api.rawg.io/api/games", {
       params: {
         page,
         page_size,
