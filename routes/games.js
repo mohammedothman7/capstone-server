@@ -8,9 +8,17 @@ const { Games } = require('../database/models');
 // Route to get gamess from database
 router.get('/', async (req, res, next) => {
   // try to get gamess object from api
-  //const { pageNumber } = req.params;
+  //console.log(req);
+  const { page, page_size } = req.query;
+  // const param = req.query.filter;
+  console.log(req.query);
   axios
-    .get('https://api.rawg.io/api/games')
+    .get('https://api.rawg.io/api/games', {
+      params: {
+        page,
+        page_size,
+      },
+    })
     .then((response) => {
       const games = response.data.results;
       const allGamesArray = [];
@@ -32,17 +40,6 @@ router.get('/', async (req, res, next) => {
     .catch((error) => {
       next(error);
     });
-  //   try {
-
-  //     // gamess will be the result of the games.findAll promise
-  //     //const games = await Games.findAll();
-  //     // if games is valid, it will be sent as a json response
-  //    // console.log(games);
-  //     res.status(200).json(games);
-  //   } catch (err) {
-  //     // if there is an error, it'll passed via the next parameter to the error handler middleware
-  //     next(err);
-  //   }
 });
 
 module.exports = router;
