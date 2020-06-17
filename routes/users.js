@@ -18,4 +18,29 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// Route to handle adding a user
+// /api/users/
+router.post("/", async (req, res, next) => {
+  // Take the form data from the request body
+  const { firstName, lastName, email, username, password } = req.body;
+  // Create a user object
+  const userObj = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    username: username,
+    password: password,
+  };
+
+  try {
+    // Create a new user on the database
+    const newUser = await User.create(userObj);
+    // The database would return a user
+    // send that user as a json to the client
+    res.status(201).send(newUser);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
