@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const { Comments } = require('../database/models');
+const { Comments, User } = require('../database/models');
 
 
 // Route to get comments associated with a game
@@ -10,7 +10,7 @@ router.get('/:id', async (req, res, next) => {
 
     const {id} = req.params;
     try {
-      const comment = await Comments.findAll({where: {gameId : id} });
+      const comment = await Comments.findAll({where: {gameId : id}, include: User });
       console.log(comment);
       res.status(200).json(comment);
     } catch (err) {
