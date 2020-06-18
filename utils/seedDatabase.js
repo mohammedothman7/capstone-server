@@ -1,4 +1,4 @@
-const { User, Comment } = require("../database/models");
+const { User } = require("../database/models");
 
 const seedDatabase = async () => {
   await Promise.all([
@@ -8,11 +8,6 @@ const seedDatabase = async () => {
       email: "JohnSmith@example.com",
       username: "JSmith123",
       password: "123",
-    }),
-    Comment.create({
-      gameId: 1,
-      commentId: 1,
-      commentContent: "Hello World!",
     }),
   ]);
 };

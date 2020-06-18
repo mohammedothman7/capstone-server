@@ -18,6 +18,22 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+/* GET a user with specific credentials. */
+router.get("/:username/:password", (req, res, next) => {
+  try {
+    const user = User.findOne({
+      where: {
+        username: req.params.username,
+        password: req.params.password,
+      },
+    });
+    console.log(user);
+    res.status(200).json(user);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // Route to handle adding a user
 // /api/users/
 router.post("/", async (req, res, next) => {
