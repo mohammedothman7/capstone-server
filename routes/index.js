@@ -2,11 +2,11 @@ var express = require("express");
 var router = express.Router();
 
 // Subrouters;
-const userRouter = require('./user');
+const userRouter = require('./users');
 const gamesRouter = require('./games');
 const commentsRouter = require("./comments");
 // Mount our subrouters to assemble our apiRouter;
-router.use('/user', userRouter);
+router.use('/users', userRouter);
 router.use('/games', gamesRouter);
 router.use('/comments', commentsRouter);
 

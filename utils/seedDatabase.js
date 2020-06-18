@@ -1,4 +1,4 @@
-const { User, Comment } = require("../database/models");
+const { User, Comments } = require("../database/models");
 
 const seedDatabase = async () => {
   await Promise.all([
