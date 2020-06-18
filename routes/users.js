@@ -19,9 +19,9 @@ router.get("/", async (req, res, next) => {
 });
 
 /* GET a user with specific credentials. */
-router.get("/:username/:password", (req, res, next) => {
+router.get("/:username/:password", async (req, res, next) => {
   try {
-    const user = User.findOne({
+    const user = await User.findOne({
       where: {
         username: req.params.username,
         password: req.params.password,
