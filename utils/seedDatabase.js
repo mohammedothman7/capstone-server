@@ -16,26 +16,6 @@ const seedDatabase = async () => {
       username: "JDoe123",
       password: "123",
     }),
-    Comments.create({
-      gameId: 2,
-      userId: 1,
-      commentContent: "Hello World!",
-    }),
-    Comments.create({
-      gameId: 5,
-      userId: 2,
-      commentContent: "Hello World!",
-    }),
-    Comments.create({
-      gameId: 2,
-      userId: 2,
-      commentContent: "Hello World!",
-    }),
-    Comments.create({
-      gameId: 20,
-      userId: 1,
-      commentContent: "Hello World!",
-    }),
   ]);
 };
 
