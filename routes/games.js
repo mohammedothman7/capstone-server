@@ -9,7 +9,7 @@ const { Games } = require("../database/models");
 router.get("/", async (req, res, next) => {
   // try to get gamess object from api
   //console.log(req);
-  const { page, page_size } = req.query;
+  const { page, page_size, ordering, dates } = req.query;
   // const param = req.query.filter;
   console.log(req.query);
   axios
@@ -17,6 +17,8 @@ router.get("/", async (req, res, next) => {
       params: {
         page,
         page_size,
+        ordering,
+        dates,
       },
     })
     .then((response) => {
