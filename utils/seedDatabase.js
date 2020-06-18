@@ -1,13 +1,13 @@
-const { User, Comments } = require('../database/models');
+const { User, Comment } = require("../database/models");
 
 const seedDatabase = async () => {
   await Promise.all([
     User.create({
-      firstName: 'John',
-      lastName: 'Smith',
-      email: 'JohnSmith@example.com',
-      username: 'JSmith123',
-      password: '123',
+      firstName: "John",
+      lastName: "Smith",
+      email: "JohnSmith@example.com",
+      username: "JSmith123",
+      password: "123",
     }),
     User.create({
       firstName: 'John',

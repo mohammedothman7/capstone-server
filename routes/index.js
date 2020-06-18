@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
 // Subrouters;
@@ -9,9 +9,10 @@ const commentsRouter = require("./comments");
 router.use('/user', userRouter);
 router.use('/games', gamesRouter);
 router.use('/comments', commentsRouter);
+
 // Error handling middleware;
 router.use((req, res, next) => {
-  const error = new Error('Not Found, Please Check URL!');
+  const error = new Error("Not Found, Please Check URL!");
   error.status = 404;
   next(error);
 });
