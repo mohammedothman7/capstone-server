@@ -77,4 +77,38 @@ router.get("/search", async (req, res, next) => {
     });
 });
 
+// Route to search for games
+router.get("/genres", async (req, res, next) => {
+  // Get search query from request
+  const { genres } = req.query;
+  console.log(genres);
+  // Call API to search for games
+  axios
+    .get("https://api.rawg.io/api/games", {
+      params: {
+        genres,
+      },
+    })
+    .then((response) => {
+      const games = response.data.results;
+      const allGamesArray = [];
+
+      // Iterrate through array to get data we need
+      for (let i = 0; i < games.length; i++) {
+        const game = {
+          id: games[i].id,
+          name: games[i].name,
+          background_image: games[i].background_image,
+          metacritic: games[i].metacritic,
+        };
+        allGamesArray.push(game);
+      }
+
+      // Send data back to frontend
+      res.status(200).json(allGamesArray);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
 module.exports = router;
