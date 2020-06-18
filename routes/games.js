@@ -8,17 +8,9 @@ const { Games } = require("../database/models");
 // Route to get gamess from database
 router.get("/", async (req, res, next) => {
   // try to get gamess object from api
-  //console.log(req);
-  const { page, page_size } = req.query;
-  // const param = req.query.filter;
-  console.log(req.query);
+  //const { pageNumber } = req.params;
   axios
-    .get("https://api.rawg.io/api/games", {
-      params: {
-        page,
-        page_size,
-      },
-    })
+    .get("https://api.rawg.io/api/games")
     .then((response) => {
       const games = response.data.results;
       const allGamesArray = [];
