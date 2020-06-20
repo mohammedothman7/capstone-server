@@ -9,14 +9,15 @@ const { Games } = require("../database/models");
 router.get("/", async (req, res, next) => {
   // try to get gamess object from api
   //console.log(req);
-  const { page, page_size, ordering, dates } = req.query;
-  // const param = req.query.filter;
+  const { page, page_size, ordering, dates, genres } = req.query;
+
   console.log(req.query);
   axios
     .get("https://api.rawg.io/api/games", {
       params: {
         page,
         page_size,
+        genres,
         ordering,
         dates,
       },
@@ -34,8 +35,8 @@ router.get("/", async (req, res, next) => {
           metacritic: games[i].metacritic,
         };
         allGamesArray.push(game);
-        //console.log(game);
       }
+      //console.log(game);
       //console.log(games);
       res.status(200).json(allGamesArray);
     })
@@ -79,38 +80,4 @@ router.get("/search", async (req, res, next) => {
     });
 });
 
-// Route to search for games
-router.get("/genres", async (req, res, next) => {
-  // Get search query from request
-  const { genres } = req.query;
-  console.log(genres);
-  // Call API to search for games
-  axios
-    .get("https://api.rawg.io/api/games", {
-      params: {
-        genres,
-      },
-    })
-    .then((response) => {
-      const games = response.data.results;
-      const allGamesArray = [];
-
-      // Iterrate through array to get data we need
-      for (let i = 0; i < games.length; i++) {
-        const game = {
-          id: games[i].id,
-          name: games[i].name,
-          background_image: games[i].background_image,
-          metacritic: games[i].metacritic,
-        };
-        allGamesArray.push(game);
-      }
-
-      // Send data back to frontend
-      res.status(200).json(allGamesArray);
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
 module.exports = router;
