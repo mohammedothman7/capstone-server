@@ -19,4 +19,23 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+router.post("/:id", async (req, res, next) => {
+  const { gameId, userId, commentContent, user } = req.body;
+
+  const commentObj = {
+    gameId: gameId,
+    userId: userId,
+    commentContent: commentContent,
+    user: user
+  };
+
+  try {
+    console.log("----------------", commentObj)
+    const newComment = await Comments.create(commentObj);
+    console.log("++++++++++++++++++++++++++++++", newComment)
+    res.status(201).send(commentObj);
+  } catch (err) {
+    next(err);
+  }
+});
 module.exports = router;

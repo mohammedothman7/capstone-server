@@ -16,6 +16,13 @@ const seedDatabase = async () => {
       username: "JDoe123",
       password: "123",
     }),
+    User.create({
+      firstName: "george",
+      lastName: "foreman",
+      email: "georgeforeman@example.com",
+      username: "gfore",
+      password: "11111",
+    }),
     Comments.create({
       gameId: 2,
       userId: 1,
@@ -29,7 +36,14 @@ const seedDatabase = async () => {
     Comments.create({
       gameId: 2,
       userId: 2,
-      commentContent: "Hello World!",
+      commentContent: "Hello World!!!!!!!!!!!!!!",
+      user: {
+        firstName: "John",
+        lastName: "Smith",
+        email: "JohnSmith@example.com",
+        username: "JSmith123",
+        password: "123",
+      }
     }),
     Comments.create({
       gameId: 20,
