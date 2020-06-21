@@ -5,12 +5,13 @@ var router = express.Router();
 const usersRouter = require("./users");
 const gamesRouter = require("./games");
 const commentsRouter = require("./comments");
+const likesRouter = require("./likes");
 
 // Mount our subrouters to assemble our apiRouter;
 router.use("/users", usersRouter);
 router.use("/games", gamesRouter);
 router.use("/comments", commentsRouter);
-
+router.use("/likes", likesRouter)
 // Error handling middleware;
 router.use((req, res, next) => {
   const error = new Error("Not Found, Please Check URL!");

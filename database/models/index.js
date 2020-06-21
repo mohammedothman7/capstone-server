@@ -2,11 +2,16 @@
 
 const User = require("./user");
 const Comments = require("./comments");
+const Likes = require("./likes");
 
 User.hasMany(Comments);
 Comments.belongsTo(User);
 
+User.hasMany(Likes);
+Likes.belongsTo(User);
+
 module.exports = {
   User,
   Comments,
+  Likes
 };
