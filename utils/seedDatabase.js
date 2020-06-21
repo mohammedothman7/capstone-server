@@ -54,6 +54,14 @@ const seedDatabase = async () => {
       gameId: 4200,
       userId: 1,
     }),
+    Likes.create({
+      gameId: 2,
+      userId: 2,
+    }),
+    Likes.create({
+      gameId: 4200,
+      userId: 3,
+    }),
   ]);
 };
 
