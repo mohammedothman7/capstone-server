@@ -9,9 +9,16 @@ const { Games } = require("../database/models");
 router.get("/", async (req, res, next) => {
   // try to get gamess object from api
   //console.log(req);
-  const { page, page_size, ordering, dates, genres } = req.query;
+  const {
+    page,
+    page_size,
+    ordering,
+    dates,
+    genres,
+    parent_platforms,
+  } = req.query;
 
-  console.log(req.query);
+  //console.log(req.query);
   axios
     .get("https://api.rawg.io/api/games", {
       params: {
@@ -20,6 +27,7 @@ router.get("/", async (req, res, next) => {
         genres,
         ordering,
         dates,
+        parent_platforms,
       },
     })
     .then((response) => {
