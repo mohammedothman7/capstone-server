@@ -7,9 +7,11 @@ const databaseName = require("../utils/databaseName");
 // Confirmation message (limit these in production);
 console.log("Opening database connection");
 
+console.log(process.env.HEROKU_POSTGRESQL_PURPLE_URL);
 // This is our entry point, we instantiate the Sequelize instance accordingly;
 const db = new Sequelize(
-  process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
+  process.env.HEROKU_POSTGRESQL_PURPLE_URL ||
+    `postgres://localhost:5432/${databaseName}`,
   { logging: false }
 );
 
