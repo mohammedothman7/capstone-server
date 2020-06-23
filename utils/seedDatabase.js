@@ -46,9 +46,9 @@ const seedDatabase = async () => {
       },
     }),
     Comments.create({
-      gameId: 20,
+      gameId: 3498,
       userId: 1,
-      commentContent: "Hello World!",
+      commentContent: "GOAT!!!",
     }),
     Likes.create({
       gameId: 4200,
