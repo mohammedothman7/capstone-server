@@ -3,6 +3,7 @@
 // Module dependencies;
 const Sequelize = require("sequelize");
 const databaseName = require("../utils/databaseName");
+const { Client } = require("pg");
 
 // Confirmation message (limit these in production);
 console.log("Opening database connection");
@@ -15,5 +16,14 @@ const db = new Sequelize(
   { logging: false }
 );
 
+const client = new Client({
+  connectionString: process.env.HEROKU_POSTGRESQL_PURPLE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
+
+client.connect();
+
 // Export our instance of Sequelize, which will be modified with models;
-module.exports = db;
+module.exports = client;
