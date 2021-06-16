@@ -12,7 +12,12 @@ console.log(process.env.HEROKU_POSTGRESQL_PURPLE_URL);
 const db = new Sequelize(
   process.env.HEROKU_POSTGRESQL_PURPLE_URL ||
     `postgres://localhost:5432/${databaseName}`,
-  { logging: false }
+  {
+    logging: false,
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  }
 );
 
 // Export our instance of Sequelize, which will be modified with models;
