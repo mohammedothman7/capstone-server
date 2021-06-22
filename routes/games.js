@@ -57,6 +57,7 @@ router.get("/search", async (req, res, next) => {
   axios
     .get("https://api.rawg.io/api/games", {
       params: {
+        key: process.env.RAWG_API_KEY,
         search,
       },
     })
