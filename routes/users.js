@@ -1,5 +1,5 @@
 var express = require("express");
-const bcrypt = require('bcrypt')
+const bcrypt = require("bcryptjs");
 var router = express.Router();
 const { User } = require("../database/models");
 
@@ -28,15 +28,19 @@ router.get("/:username/:password", async (req, res, next) => {
         username: req.params.username,
       },
     });
-    
+
     // Verifying password matches hashed
-    bcrypt.compare(req.params.password, user.password, function(err, response) {
-      if(response){
-        res.status(200).json(user);
-      } else {
-        res.status(401).json();
+    bcrypt.compare(
+      req.params.password,
+      user.password,
+      function (err, response) {
+        if (response) {
+          res.status(200).json(user);
+        } else {
+          res.status(401).json();
+        }
       }
-    })
+    );
   } catch (err) {
     next(err);
   }
@@ -49,7 +53,7 @@ router.post("/", async (req, res, next) => {
   const { firstName, lastName, email, username, password } = req.body;
 
   // Hashing password
-  bcrypt.hash(password, 10, async function(err, hash) {
+  bcrypt.hash(password, 10, async function (err, hash) {
     if (err) next(err);
 
     // Create a user object
@@ -60,7 +64,7 @@ router.post("/", async (req, res, next) => {
       username: username,
       password: hash,
     };
-  
+
     try {
       // Create a new user on the database
       const newUser = await User.create(userObj);
