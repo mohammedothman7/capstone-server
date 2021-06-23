@@ -84,4 +84,22 @@ router.get("/search", async (req, res, next) => {
     });
 });
 
+// Route to get a specific game
+router.get("/game", async (req, res, next) => {
+  // Get search query from request
+  const { id } = req.query;
+
+  // Call API to search for games
+  axios
+    .get(`https://api.rawg.io/api/games/${id}`, {
+      params: {
+        key: process.env.RAWG_API_KEY,
+      },
+    })
+    .then((game) => res.status(200).json(game.data))
+    .catch((error) => {
+      next(error);
+    });
+});
+
 module.exports = router;
